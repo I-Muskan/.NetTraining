@@ -5,10 +5,13 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Hospital_assignment
+
 {
+    
     class PatientManagementIO
     {
         PatientServices patientService = new PatientServices();
+        byte option;
         public byte Menu()
         {
             Console.WriteLine("press 1: Add Patient");
@@ -16,7 +19,7 @@ namespace Hospital_assignment
             Console.WriteLine("press 3: Display All Patient");
             Console.WriteLine("press 4: Delete Patient");
             Console.WriteLine("press 5: EXIT");
-            byte option = byte.Parse(Console.ReadLine());
+             option = byte.Parse(Console.ReadLine());
             return option;
 
 
@@ -29,6 +32,8 @@ namespace Hospital_assignment
             string name = Console.ReadLine();
             Console.WriteLine("Enter Age");
             int age = int.Parse(Console.ReadLine());
+            
+            
             Console.WriteLine("Enter Address");
             string address  = Console.ReadLine();
             Console.WriteLine("Enter Disease");

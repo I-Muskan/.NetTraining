@@ -13,8 +13,27 @@ namespace Hospital_assignment
         {
             Patient patient = new Patient(id,name, age, address, disease, doctor, roomNo);
             PatientList.Add(patient);
-            Console.WriteLine("Patient with id "+id+" added  successfully");
-            
+            try
+            {
+
+                if (age < 0 || age > 150)
+                {
+                    throw new InvalidAge();
+                }
+                else
+                {
+                    Console.WriteLine("Patient with id " + id + " added  successfully");
+
+                }
+            }
+            catch (InvalidAge ex)
+            {
+                Console.WriteLine(ex.Message);
+
+
+
+            }
+          
         }
         public void UpdatePatientName(int id,string name)
         {
@@ -39,23 +58,43 @@ namespace Hospital_assignment
         }
         public void UpdatePatientAge(int id,int age)
         {
-            bool isUpdated = false;
-            foreach (var patient in PatientList)
+            try
             {
-                if (patient.GetId() == id)
+
+                if (age < 0 || age > 150)
                 {
-                    patient.SetAge(age);
-                    isUpdated = true;
+                    throw new InvalidAge();
+                }
+                else
+                {
+                    bool isUpdated = false;
+                    foreach (var patient in PatientList)
+                    {
+                        if (patient.GetId() == id)
+                        {
+                            patient.SetAge(age);
+                            isUpdated = true;
+                        }
+                    }
+                    if (isUpdated == false)
+                    {
+                        Console.WriteLine("No such patient exit");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Patient Details Updated Successfully");
+                    }
+
                 }
             }
-            if (isUpdated == false)
+            catch (InvalidAge ex)
             {
-                Console.WriteLine("No such patient exit");
+                Console.WriteLine(ex.Message);
+
+
+
             }
-            else
-            {
-                Console.WriteLine("Patient Details Updated Successfully");
-            }
+           
         }
         public void UpdatePatientAddress(int id, string address)
         {

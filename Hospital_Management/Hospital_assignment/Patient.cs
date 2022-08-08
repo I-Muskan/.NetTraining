@@ -5,7 +5,19 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Hospital_assignment
+{ 
+    public class InvalidAge : Exception
 {
+
+    public override string Message
+    {
+        get
+        {
+            return "Your age can not be greater than 150 and less than 0 as a human.Fill details again";
+        }
+    }
+}
+
     class Patient
     {
 
@@ -20,6 +32,7 @@ namespace Hospital_assignment
         {
             this.Id = id;
             this.Name = name;
+            
             this.Age = age;
             this.Address = address;
             this.Disease = disease;
@@ -66,7 +79,26 @@ namespace Hospital_assignment
         }
         public void SetAge(int age)
         {
-            this.Age = age;
+            try
+            {
+
+                if (age < 0 || age > 150)
+                {
+                    throw new InvalidAge();
+                }
+                else
+                {
+                    this.Age = age;
+                }
+            }
+            catch (InvalidAge ex)
+            {
+                Console.WriteLine(ex.Message);
+
+
+
+            }
+            
         }
         public void SetAddress(string address)
         {
