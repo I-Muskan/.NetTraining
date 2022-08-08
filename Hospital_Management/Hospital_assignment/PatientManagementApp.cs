@@ -12,12 +12,12 @@ namespace Hospital_assignment
         {
             PatientManagementIO patientManagementIO = new PatientManagementIO();
             bool flag = true;
-            int option = patientManagementIO.Menu();
+           
 
 
             do
             {
-                switch (option)
+                switch (patientManagementIO.Menu())
                 {
 
                     case 1:
