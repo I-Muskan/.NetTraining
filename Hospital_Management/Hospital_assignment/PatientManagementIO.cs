@@ -9,14 +9,14 @@ namespace Hospital_assignment
     class PatientManagementIO
     {
         PatientServices patientService = new PatientServices();
-        public static int Menu()
+        public byte Menu()
         {
             Console.WriteLine("press 1: Add Patient");
             Console.WriteLine("press 2: Update Patient Details");
             Console.WriteLine("press 3: Display All Patient");
             Console.WriteLine("press 4: Delete Patient");
             Console.WriteLine("press 5: EXIT");
-            int option = int.Parse(Console.ReadLine());
+            byte option = byte.Parse(Console.ReadLine());
             return option;
 
 

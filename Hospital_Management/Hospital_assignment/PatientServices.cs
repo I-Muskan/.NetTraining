@@ -13,7 +13,7 @@ namespace Hospital_assignment
         {
             Patient patient = new Patient(id,name, age, address, disease, doctor, roomNo);
             PatientList.Add(patient);
-            Console.WriteLine("Patient with id{0} ", id," successfully");
+            Console.WriteLine("Patient with id "+id+" added  successfully");
             
         }
         public void UpdatePatientName(int id,string name)
@@ -137,7 +137,7 @@ namespace Hospital_assignment
            
             foreach (var patient in PatientList)
             {
-                Console.WriteLine("Name: {0}\n", patient.GetName() + " Age :{1}\n", patient.GetAge() + "Address: {2}\n", patient.GetAddress(), "Disease: {3}\n", patient.GetDisease(), " Doctor: {4}\n", patient.GetDoctor(), "Room No: {5}\n", patient.GetRoomNo()+"\n");
+                Console.WriteLine("Name: "+ patient.GetName() + "\nAge : "+ patient.GetAge() + "\nAddress: "+ patient.GetAddress()+"\nDisease: "+patient.GetDisease()+"\nDoctor:  "+patient.GetDoctor()+"\nRoom No: "+ patient.GetRoomNo()+"\n");
             }
             
         }

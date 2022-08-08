@@ -18,6 +18,7 @@ namespace Hospital_assignment
         String RoomNo;
         public Patient(int id,string name,int age,string address,string disease,string doctor,string roomNo)
         {
+            this.Id = id;
             this.Name = name;
             this.Age = age;
             this.Address = address;

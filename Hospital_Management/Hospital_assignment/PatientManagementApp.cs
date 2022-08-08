@@ -8,13 +8,16 @@ namespace Hospital_assignment
 {
     class PatientManagementApp
     {
-        static void main(string[] args)
+        static void Main(string[] args)
         {
             PatientManagementIO patientManagementIO = new PatientManagementIO();
             bool flag = true;
+            int option = patientManagementIO.Menu();
+
+
             do
             {
-                switch (PatientManagementIO.Menu())
+                switch (option)
                 {
 
                     case 1:
