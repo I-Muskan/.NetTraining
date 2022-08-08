@@ -45,6 +45,7 @@ namespace Hospital_assignment
                 if (patient.GetId() == id)
                 {
                     patient.SetAge(age);
+                    isUpdated = true;
                 }
             }
             if (isUpdated == false)
@@ -64,6 +65,7 @@ namespace Hospital_assignment
                 if (patient.GetId() == id)
                 {
                     patient.SetAddress(address);
+                    isUpdated = true;
                 }
             }
             if (isUpdated == false)
@@ -83,6 +85,7 @@ namespace Hospital_assignment
                 if (patient.GetId() == id)
                 {
                     patient.SetDisease(disease);
+                    isUpdated = true;
                 }
             }
             if (isUpdated == false)
@@ -102,6 +105,7 @@ namespace Hospital_assignment
                 if (patient.GetId() == id)
                 {
                     patient.SetDoctor(doctor);
+                    isUpdated = true;
                 }
             }
             if (isUpdated == false)
@@ -121,6 +125,7 @@ namespace Hospital_assignment
                 if (patient.GetId() == id)
                 {
                     patient.SetRoomNo(roomNo);
+                    isUpdated = true;
                 }
             }
             if (isUpdated == false)
