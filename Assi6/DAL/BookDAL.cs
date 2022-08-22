@@ -126,19 +126,43 @@ namespace DAL
                 return false;
             }
         }
+        private int GetNumberOfRecords()
+        {
+            int count = -1;
+            try
+            {
+                con = new SqlConnection(cs);
+                con.Open();
+                SqlCommand cmd = new SqlCommand("Select count(*) from Book", con);
 
-        public DataSet BookAllDAL(Book bookX)
+                count = (int)cmd.ExecuteScalar();
+            }
+            finally
+            {
+                if (con!= null)
+                {
+                    con.Close();
+                }
+            }
+            return count;
+        }
+        public DataTable BookAllDAL(Book bookX)
         {
 
-            con = new SqlConnection(cs);
-            cmd = new SqlCommand("BOOKAllRecords_SP", con);
-            cmd.CommandType = System.Data.CommandType.StoredProcedure;
-            SqlDataAdapter sda = new SqlDataAdapter(cmd);
-            DataSet ds = new DataSet();
-            sda.Fill(ds);
-            con.Close();
-
-            return ds;
+            if (GetNumberOfRecords() > 0)
+            {
+                con = new SqlConnection(cs);
+                cmd = new SqlCommand("BOOKAllRecords_SP", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                DataTable DT = new DataTable();
+                SqlDataAdapter DA = new SqlDataAdapter(cmd);
+                DA.Fill(DT);
+                return DT;
+            }
+            else
+            {
+                return null;
+            }
 
 
 

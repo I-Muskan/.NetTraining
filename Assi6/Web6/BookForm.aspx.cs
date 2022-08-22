@@ -66,10 +66,20 @@ namespace Web6
             decimal Price = decimal.Parse(txtPrice.Text);
             Book bookX = new Book(BookId, BookName, Author, Publisher, Price);
 
-            bookBLLObj.BookReadBLL(bookX);
-            Response.Redirect("WebForm2.aspx");
+            DataTable ds = bookBLLObj.BookReadBLL(bookX);
+            foreach (DataRow dr in ds.Rows)
+            {
+                foreach (var item in dr)
+                {
 
+                    Console.Write(item + " ");
+                }
+            }
+            Console.WriteLine();
         }
+
+    
+
 
         protected void btnInsert_Click(object sender, EventArgs e)
         {
