@@ -59,26 +59,12 @@ namespace Web6
 
         protected void btnRead_Click(object sender, EventArgs e)
         {
-            int BookId = int.Parse(txtBookId.Text);
-            string BookName = txtBookName.Text;
-            string Author = txtAuthor.Text;
-            string Publisher = txtPublisher.Text;
-            decimal Price = decimal.Parse(txtPrice.Text);
-            Book bookX = new Book(BookId, BookName, Author, Publisher, Price);
+            GridView1.DataSource = bookBLLObj.BookReadBLL();
+            GridView1.DataBind();
 
-            DataTable ds = bookBLLObj.BookReadBLL(bookX);
-            foreach (DataRow dr in ds.Rows)
-            {
-                foreach (var item in dr)
-                {
-
-                    Console.Write(item + " ");
-                }
-            }
-            Console.WriteLine();
         }
 
-    
+
 
 
         protected void btnInsert_Click(object sender, EventArgs e)
@@ -90,8 +76,8 @@ namespace Web6
             string Publisher = txtPublisher.Text;
             decimal Price = decimal.Parse(txtPrice.Text);
             Book bookX = new Book(BookId, BookName, Author, Publisher, Price);
-            if(bookBLLObj.BookInsertBLL(bookX))
-             {
+            if (bookBLLObj.BookInsertBLL(bookX))
+            {
                 Response.Write("Book Added Successfully");
             }
             else

@@ -25,9 +25,9 @@ namespace BLL
             return bookDALobj.BookDeleteDAL(bookX);
         }
        
-        public DataTable BookReadBLL(Book bookX)
+        public object BookReadBLL()
         {
-            return bookDALobj.BookAllDAL(bookX);
+            return bookDALobj.BookAllDAL();
         }
     }
 }

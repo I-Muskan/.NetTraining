@@ -12,7 +12,7 @@ namespace DAL
     public class BookDAL
     {
         SqlConnection con;
-        string cs = "Data Source=del1-lhp-n82179;Initial Catalog = BOOKDB; Integrated Security = True";
+        string cs = "Data Source=DEL1-LHP-N82179;Initial Catalog = BOOKDB; Integrated Security = True";
         SqlCommand cmd = new SqlCommand();
 
         public bool BookInsertDAL(Book bookX)
@@ -21,12 +21,12 @@ namespace DAL
             {
                 con = new SqlConnection(cs);
                 cmd = new SqlCommand("Book_SP", con);
-                cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@BookId", con);
-                cmd.Parameters.AddWithValue("@BookName", con);
-                cmd.Parameters.AddWithValue("@Author", con);
-                cmd.Parameters.AddWithValue("@Publisher", con);
-                cmd.Parameters.AddWithValue("@Price", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@BookId",bookX.BookId);
+                cmd.Parameters.AddWithValue("@BookName", bookX.BookName);
+                cmd.Parameters.AddWithValue("@Author", bookX.Author);
+                cmd.Parameters.AddWithValue("@Publisher",bookX.Publisher);
+                cmd.Parameters.AddWithValue("@Price", bookX.Price);
                 con.Open();
                 int fl = cmd.ExecuteNonQuery();
                 con.Close();
@@ -57,13 +57,14 @@ namespace DAL
             try
             {
                 con = new SqlConnection(cs);
-                cmd = new SqlCommand("UpdateBook", con);
-                cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@BookId", con);
-                cmd.Parameters.AddWithValue("@BookName", con);
-                cmd.Parameters.AddWithValue("@Author", con);
-                cmd.Parameters.AddWithValue("@Publisher", con);
-                cmd.Parameters.AddWithValue("@Price", con);
+                cmd = new SqlCommand("UpdatedBook", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+              
+                cmd.Parameters.AddWithValue("@BookId", bookX.BookId);
+                cmd.Parameters.AddWithValue("@BookName", bookX.BookName);
+                cmd.Parameters.AddWithValue("@Author", bookX.Author);
+                cmd.Parameters.AddWithValue("@Publisher", bookX.Publisher);
+                cmd.Parameters.AddWithValue("@Price", bookX.Price);
                 con.Open();
                 int fl = cmd.ExecuteNonQuery();
                 con.Close();
@@ -96,11 +97,8 @@ namespace DAL
                 con = new SqlConnection(cs);
                 cmd = new SqlCommand("DeleteBook", con);
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@BookId", con);
-                cmd.Parameters.AddWithValue("@BookName", con);
-                cmd.Parameters.AddWithValue("@Author", con);
-                cmd.Parameters.AddWithValue("@Publisher", con);
-                cmd.Parameters.AddWithValue("@Price", con);
+                cmd.Parameters.AddWithValue("@BookId", bookX.BookId);
+                
                 con.Open();
                 int fl = cmd.ExecuteNonQuery();
                 con.Close();
@@ -126,16 +124,16 @@ namespace DAL
                 return false;
             }
         }
-        private int GetNumberOfRecords()
+        private int GetCountBooks()
         {
-            int count = -1;
+            int x = -1;
             try
             {
                 con = new SqlConnection(cs);
                 con.Open();
                 SqlCommand cmd = new SqlCommand("Select count(*) from Book", con);
 
-                count = (int)cmd.ExecuteScalar();
+                x = (int)cmd.ExecuteScalar();
             }
             finally
             {
@@ -144,12 +142,12 @@ namespace DAL
                     con.Close();
                 }
             }
-            return count;
+            return x;
         }
-        public DataTable BookAllDAL(Book bookX)
+        public Object BookAllDAL()
         {
 
-            if (GetNumberOfRecords() > 0)
+            if (GetCountBooks() > 0)
             {
                 con = new SqlConnection(cs);
                 cmd = new SqlCommand("BOOKAllRecords_SP", con);
