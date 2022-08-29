@@ -1,5 +1,12 @@
 create db BOOKDB;
-
+CREATE TABLE Book
+(
+BookId int NOT NULL,
+BookName varchar(255),
+Author varchar(50),
+Publisher varchar(100),
+Price decimal(6,2)
+);
 
 create proc BOOK_SP
 @BookId int,
